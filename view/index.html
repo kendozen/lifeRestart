@@ -13,12 +13,13 @@
     <script src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
     <script>
     $(function(){
+        var url = location.href.split('#').toString();
         $.ajax({
             type : "get",
             url : "http://www.manta.org.cn/wechatParam",
             dataType : "json",
             async : false,
-            data:{url: 'http://life-restart.manta.org.cn'},
+            data:{url: url},
             success : function(data) {
                 wx.config({
                     debug: true,////生产环境需要关闭debug模式
