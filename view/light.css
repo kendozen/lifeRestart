@@ -49,6 +49,8 @@ html {
 
 body {
 	user-select: none;
+  display: flex;
+  flex-direction: column;
 }
 
 #main {
@@ -59,7 +61,7 @@ body {
 }
 
 #title {
-    position: fixed;
+    position: absolute;
     font-size: 3rem;
     font-weight: 700;
     top: 35%;
@@ -69,8 +71,19 @@ body {
     text-align: center;
 }
 
+.ss-section {
+  min-height: 5vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  border: 0px solid black;
+  ;
+}
+
 .mainbtn {
-    position: fixed;
+    position: absolute;
     top: 65%;
     left: 50%;
 	padding: 0.5rem 1.5rem;
@@ -85,7 +98,7 @@ body {
 }
 
 .mainbtn:hover {
-	background: #ff7878;
+	background: rgb(255, 120, 120);
 	color: #fff;
 	transition: all .4s ease 0s;
 }
@@ -98,7 +111,7 @@ body {
 }
 
 #rank {
-    position: fixed;
+    position: absolute;
     top: 1rem;
     right: 1rem;
     padding: 0.1rem 1rem;
@@ -112,7 +125,7 @@ body {
 }
 
 #themeToggleBtn {
-    position: fixed;
+    position: absolute;
     right: 1rem;
     bottom: 1rem;
     padding: 0.1rem 1rem;
@@ -126,7 +139,7 @@ body {
 }
 
 .head {
-    position: fixed;
+    position: absolute;
     font-size: 1.4rem;
     top: 1.1rem;
     left: 50%;
@@ -139,7 +152,7 @@ body {
 .lifeTrajectory,
 .propinitial,
 .selectlist {
-    position: fixed;
+    position: absolute;
     list-style-type: none;
     left: 50%;
     top: 5rem;
@@ -150,32 +163,6 @@ body {
     padding: 0;
     overflow: auto;
     transform: translateX(-50%);
-    text-align: center;
-}
-
-.lifeProperty{
-  position: fixed;
-  list-style-type: none;
-  left: 50%;
-  top: 2rem;
-  width: 30rem;
-  max-width: calc(100% - 2rem);
-  padding: 0;
-  overflow: auto;
-  transform: translateX(-50%);
-  display: flex;
-  color: black;
-}
-
-.lifeProperty > li {
-  width: 100%;
-  position: relative;
-  border: 1px #ccc solid;
-  display: inline-block;
-  margin: 0.1rem 2px;
-  font-size: 1rem;
-  text-align: center;
-  border-radius: 0.2rem;
 }
 
 .selectlist > li {
@@ -190,87 +177,85 @@ body {
     cursor: pointer;
 }
 
+.grade1b,
+.grade2b,
+.grade3b {
+  padding-left: 1.5rem;
+  box-sizing: border-box;
+}
+
 .grade0b {
-	background-color: #ededed;
+	background-color: rgb(237, 237, 237);
 	border: #c5c5c5 2px solid !important;
 }
 
+.grade1,
+.grade1b::before {
+    background-color: rgb(116, 191, 255) !important;
+}
 .grade1b {
-	background-color: #7ea5ec;
+	background-color: rgb(116, 191, 255);
 	border: #c5c5c5 2px solid !important;
 }
 
+.grade2,
+.grade2b::before {
+    background-color: rgb(226, 167, 255) !important;
+}
 .grade2b {
-	background-color: #e2a7ff;
+	background-color: rgb(226, 167, 255);
 	border: #c5c5c5 2px solid !important;
 }
 
+.grade3,
+.grade3b::before {
+    background-color: #ffa07a !important;
+}
 .grade3b {
 	background-color: #ffa07a;
 	border: #c5c5c5 2px solid !important;
 }
 
-@media (min-width:1080px) {
-    .grade0b:hover {
-        background-color: #868686;
-        transition: all .3s ease 0s;
-    }
-
-    .grade1b:hover {
-        background-color: #5d90ff;
-        transition: all .3s ease 0s;
-    }
-
-    .grade2b:hover {
-        background-color: #bc72ec;
-        transition: all .3s ease 0s;
-    }
-
-    .grade3b:hover {
-        background-color: #e09074;
-        transition: all .3s ease 0s;
-    }
+.grade0b:hover {
+	background-color: rgb(160, 160, 160);
+	transition: all .4s ease 0s;
 }
+.grade1b:hover {
+	background-color: rgb(159, 207, 248);
+	transition: all .4s ease 0s;
+}
+.grade2b:hover {
+	background-color: rgb(240, 212, 255);
+	transition: all .4s ease 0s;
+}
+.grade3b:hover {
+	background-color: #f7a989;
+	transition: all .4s ease 0s;
+}
+
 .grade0b.selected {
-    background-color: #444;
-    box-shadow: #bbb 0px 0px 10px;
-    color: #fff;
+    background-color: rgb(160, 160, 160);
+    color: #3b3b3b;
 }
 
 .grade1b.selected {
-    background-color: #407dec;
-    box-shadow: #bbb 0px 0px 10px;
-    color: #fff;
+    background-color: rgb(159, 207, 248);
+    color: #3b3b3b;
 }
 
 .grade2b.selected {
-	background-color: #b362e7;
-    box-shadow: #bbb 0px 0px 10px;
-    color: #fff;
+	background-color: rgb(240, 212, 255);
+    color: #3b3b3b;
 }
 
 .grade3b.selected {
-    background-color: #ff7f4d;
-    box-shadow: #bbb 0px 0px 10px;
-    color: #fff;
-}
-
-.judge > li.grade1 span,
-.judge > li.grade1{
-    background-color: #7ea5ec;
-}
-.judge > li.grade2 span,
-.judge > li.grade2{
-    background-color: #e2a7ff;
-}
-.judge > li.grade3 span,
-.judge > li.grade3{
-    background-color: #ffa07a;
+    background-color: #f7a989;
+    color: #3b3b3b;
 }
 
 .propinitial {
     top: 5rem;
-    bottom: 17rem;
+    bottom: 14rem;
 }
 
 .propinitial > li {
@@ -307,9 +292,9 @@ body {
 }
 
 .lifeTrajectory {
-    border: 1px #a7a7a7 solid;
+    border: 1px lightblue solid;
     border-radius: 10px;
-    background-color: #ffffff;
+    background-color: aliceblue;
 }
 
 .judge > li,
@@ -319,8 +304,8 @@ body {
     margin: 0.5rem 0;
     padding: 0.5rem 1rem 0.5rem 6rem;
     font-size: 1.4rem;
-    background-color: #fff;
-    box-shadow: #a7a7a7 0 0 0.4rem;
+    background-color: white;
+    box-shadow: lightblue 0 0 0.4rem;
     user-select: none;
 }
 
@@ -337,14 +322,13 @@ body {
     width: calc(100% - 9rem);
     margin: 0.5rem;
     padding: 0.5rem 1rem 0.5rem 7rem;
-    border-radius: 10px;
 }
 
 .judge > li > span {
+    background-color: white;
     height: calc(100% - 1rem);
     padding: 0.5rem 0;
     top: 0;
-    border-radius: 10px;
 }
 
 
@@ -370,7 +354,7 @@ i {
 }
 
 .banners-container {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;

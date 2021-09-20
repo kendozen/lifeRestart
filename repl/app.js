@@ -49,12 +49,7 @@ class App {
         this.output('Now Loading...');
         this.#talentExtend = global.localStorage.talentExtend;
         await this.#life.initial();
-        this.output(`\rLoading Complete.
-人生重开模拟器
-这垃圾人生一秒也不想待了
-\n🎉键入 \x1B[4m/remake\x1B[24m 开始游戏`,
-            true
-        );
+        this.output('\rLoading Complete.\ntype \x1B[4m/remake\x1B[24m to start', true);
     }
 
     io(input, output, exit) {
@@ -410,6 +405,7 @@ class App {
                 return this.trajectory(enter);
             case this.Steps.TRAJECTORY:
                 if(!this.#isEnd) return this.trajectory(enter);
+                if(this.#interval) clearInterval(this.#interval);
                 this.#step = this.Steps.SUMMARY;
                 return `${
                     this.summary()
@@ -425,16 +421,12 @@ class App {
         if(enter) {
             if(this.#interval) {
                 clearInterval(this.#interval);
-                this.#interval = null;
                 this.#auto = false;
             } else if(this.#auto) {
                 this.#interval = setInterval(
                     ()=>{
                         const trajectory = this.next();
-                        if(this.#isEnd && this.#interval) {
-                            clearInterval(this.#interval);
-                            this.#interval = null;
-                        }
+                        if(this.#isEnd && this.#interval) clearInterval(this.#interval);
                         if(!this.#isEnd) return this.output(`${trajectory}\n`);
                         return this.output(trajectory, true);
                     }
@@ -462,8 +454,8 @@ class App {
 
     prop() {
         const { CHR, INT, STR, MNY } = this.#propertyAllocation;
-        return `🎉属性分配
-剩余点数 ${this.less()}
+        return `Property Allocation []
+🎉 剩余点数 ${this.less()}
 
 属性(TAG)       当前值
 颜值(CHR)         ${CHR}
