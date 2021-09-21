@@ -28,10 +28,32 @@
                     nonceStr: data.nonceStr,//生成签名的随机字符串
                     signature: data.signature,//签名
                     jsApiList: [//需要调用的JS接口列表
-                        'checkJsApi',//判断当前客户端版本是否支持指定JS接口
+                        //'checkJsApi',//判断当前客户端版本是否支持指定JS接口
                         'updateAppMessageShareData',//分享给好友
                         'updateTimelineShareData'//分享到朋友圈
                     ]
+                });
+                wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
+                    var link = window.location.href;
+                    var host = window.location.host;
+                    wx.updateAppMessageShareData({
+                        title: '人生重开模拟器，这垃圾人生一秒也不想呆了', // 分享标题
+                        desc: '开挂的人生，就是如此彪悍，点开看看你的人生会是怎样的', // 分享描述
+                        link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                        imgUrl: 'http://' + host + '/images/share.jpeg', // 分享图标
+                        success: function () {
+                        // 设置成功
+                        }
+                    });
+                    wx.updateTimelineShareData({
+                        title: '人生重开模拟器，这垃圾人生一秒也不想呆了', // 分享标题
+                        desc: '开挂的人生，就是如此彪悍，点开看看你的人生会是怎样的', // 分享描述
+                        link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                        imgUrl: 'http://' + host + '/images/share.jpeg', // 分享图标
+                        success: function () {
+                        // 设置成功
+                        }
+                        });
                 });
             },
             error: function(xhr, status, error) {
@@ -39,32 +61,6 @@
                 alert(xhr.responseText);
             }
         })
-    });
-    wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
-        var link = window.location.href;
-        var host = window.location.host;
-        wx.updateAppMessageShareData({
-            title: '人生重开模拟器，这垃圾人生一秒也不想呆了', // 分享标题
-            desc: '开挂的人生，就是如此彪悍，点开看看你的人生会是怎样的', // 分享描述
-            link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: 'http://' + host + '/images/share.jpeg', // 分享图标
-            success: function () {
-            // 设置成功
-            }
-        });
-        wx.updateTimelineShareData({
-            title: '人生重开模拟器，这垃圾人生一秒也不想呆了', // 分享标题
-            desc: '开挂的人生，就是如此彪悍，点开看看你的人生会是怎样的', // 分享描述
-            link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: 'http://' + host + '/images/share.jpeg', // 分享图标
-            success: function () {
-            // 设置成功
-            }
-        })
-    }),
-    wx.success(function(res){
-        console.log("错误信息"+res);
-    //config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
     });
     </script>
     <script>
